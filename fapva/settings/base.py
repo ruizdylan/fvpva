@@ -179,10 +179,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'fapva',
-        'USER': os.getenv('PG_USER', 'muqeet'),
-        'PASSWORD': os.getenv('PG_PASSWD', 'muqeet123'),
+        'USER': os.getenv('PG_USER', 'postgres'),
+        'PASSWORD': os.getenv('PG_PASSWD', 'admin'),
         'HOST': os.getenv('PG_HOST', 'localhost'),
-        'PORT': '5433',
+        'PORT': '5432',
     }
 
 }
