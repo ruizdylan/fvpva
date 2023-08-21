@@ -1,0 +1,88 @@
+{% extends 'administrator/base.html' %}
+{% load static %}
+{% block title %} Services{% endblock %}
+
+{% block css %}
+    {#    <link href="{% static '/fapva_css/home.css' %}" rel="stylesheet" type="text/css"/>#}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Services</h1>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box bg-white table-responsive py-3 px-2">
+                    <table id="services-datatable" class="table table-striped table-bordered dt-responsive nowrap"
+                           style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Services</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="services-form">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-md-12">
+                                <div class="form-group my-1 w-[45]">
+                                    <label for="exampleInputEmail1">OTP / Message</label>
+                                    <textarea name="message" class="form-control" id="message"
+                                           aria-describedby="" min="0"
+                                              placeholder="Enter Message" required></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submit">Save changes</button>
+                    <button type="button" class="btn btn-primary d-none" id="edit">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{% static "fapva_js/admin/bought_services.js" %}"></script>
+
+    <script>
+        var data;
+        window.onload = function () {
+            data = {
+                "services_datatable_url": ' {% url "order-datatable" %}',
+                "order_url": '{% url 'client-order' %}',
+            };
+
+            new BoughtServices(data);
+        }
+    </script>
+{% endblock %}

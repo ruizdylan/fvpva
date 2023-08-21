@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="FAPVA">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- App title -->
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="{% static '/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static '/plugins/bootstrap/css/bootstrap.rtl.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static '/plugins/bootstrap/css/bootstrap-grid.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static '/plugins/bootstrap/css/bootstrap-utilities.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static '/plugins/sweetalert2/sweetalert.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static '/fapva_css/navbar.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static '/icons/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css"/>
+
+    <style>
+        @font-face {
+            font-family: 'Poppins';
+            src: url({% static 'fonts/Poppins/Poppins-Regular.ttf' %}) format('truetype');
+        }
+    </style>
+
+    {% block css %}{% endblock %}
+
+</head>
+
+<body class="fixed-left">
+{% include "common/header.html" %}
+
+{% block content %}
+{% endblock %}
+<!-- jQuery -->
+<script src="{% static 'js/jquery.min.js' %} "></script>
+<script src="{% static '/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static '/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+{#<script src="{% static '/plugins/bootstrap/js/bootstrap.esm.min.js' %}"></script>#}
+
+<script src="{% static 'plugins/sweetalert2/sweetalert.min.js' %}"></script>
+<script src="{% static 'plugins/simpletoast.js' %}"></script>
+<script src="{% static 'fapva_js/utils/sweetalerts.js' %} "></script>
+
+<script src="{% static 'fapva_js/utils/utils.js' %} "></script>
+<script src="{% static "fapva_js/common_script.js" %}"></script>
+
+
+{% block js %}
+{% endblock %}
+{% include "common/footer.html" %}
+</body>
+
+</html>

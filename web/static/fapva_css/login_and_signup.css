@@ -1,0 +1,79 @@
+.login-container h3{
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.login-container p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    /* or 188% */
+    color: #62727B;
+}
+
+.or-container div{
+    position: relative;
+}
+.or-container div h3{
+    position: absolute;
+    font-size: 18px;
+    background: white;
+    padding: 4px 10px;
+    top: -25px;
+    left: 45%;
+    z-index: 1;
+}
+.sign-in-with-container a{
+    padding: 1rem 3rem;
+    background: transparent;
+    border-radius: 0.5rem;
+    border: 1px solid #D3D3D3;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    color: black;
+}
+/*.sign-in-with-container button:hover{*/
+/*    background: #D3D3D3;*/
+/*    transition: all 0.3s ease-in-out;*/
+/*}*/
+
+.login-container input{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+
+.login-container input:focus{
+    border: 1px solid #00ABB3;
+    box-shadow: none;
+}
+
+.login-container input[type=checkbox]{
+    border: 1px solid #00ABB3;
+}
+
+.login-container input[type=checkbox]:checked {
+    border: #00ABB3;
+    background-color: #00ABB3;
+}
+.sign-up-anchor {
+    color: #00ABB3;
+}
+.sign-up-anchor:hover {
+    color: rgba(0, 171, 179, 0.8);
+}
+
+.container {
+    min-width: 95%;
+}
+
+.login-container label{
+    font-weight: 600;
+}
+
+.login-container button[type=submit]{
+    background: #00ABB3;
+    border: 1px solid transparent;
+}

@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} FVPVA | Free Numbers {% endblock %}
+{% block description %} Free Numbers Description FVPVA {% endblock %}
+
+{% block css %}
+    <link href="{% static '/fapva_css/free_numbers.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+    {# Virtual Online Number for Service#}
+    <div class="container-fluid">
+        <div class="row header-container">
+            <div class="col-12 my-4">
+                <h1 class="text-center text-capitalize m-auto">
+                    Free Numbers
+                </h1>
+            </div>
+            <div class="col-12 my-4 text-center header-button">
+                <a href="{% url "visitor-home" %}" class="btn btn-primary bg-dark text-white mx-2 border border-dark px-5 py-3 btn-border-round">
+                    Home
+                </a>
+                <a href="{% url "visitor-free-numbers" %}#countries-data" class="btn btn-primary bg-transparent mx-2 border border-white px-5 py-3 btn-border-round">
+                    Free Numbers
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {#Please Note for the messages and countries#}
+    {#    Full List of Countries and Services#}
+    <div class="container-fluid">
+        <div class="row countries-services-container">
+            <div class="col-12 my-3 my-3">
+                <h3 class="text-center text-capitalize m-auto">
+                    Please Note
+                </h3>
+                <p class="text-center m-auto my-3">
+                    Get a one-time password for any of our virtual numbers without creating an account. Simply select a
+                    number, copy it, and use it to verify your registration on a website. However, please be aware that
+                    the website administration cannot be held responsible for any consequences that may arise from the
+                    use of these free virtual numbers. SMS messages received on these numbers are visible to everyone
+                    and the numbers are publicly accessible. We recommend against using these numbers for registering
+                    accounts of high importance that you cannot afford to lose access to.
+                </p>
+            </div>
+            <div class="col-12">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-11 col-md-11 col-lg-6 col-xl-5 countries-container web-color">
+                        <div class="d-flex justify-content-between resp-countries-container">
+                            <div class="">
+                                <h4 class="text-white">Select a Country</h4>
+                            </div>
+                            <div class="search-input-container">
+                                <input class="search-input-field" placeholder="Search" id="country-search">
+                                <span class="fa-solid fa-search text-white"></span>
+                            </div>
+                        </div>
+                        <div class="countries-data d-flex flex-column real-countries" id="countries-data">
+
+                        </div>
+                        <div class="services-arrows">
+                            <ul class="d-flex list-unstyled justify-content-center m-0">
+                                <li><a href="javascript:void(0)" id="country-left"><span
+                                        class="fa fa-arrow-circle-left mx-3"></span></a></li>
+                                <li><a href="javascript:void(0)" id="country-right"><span
+                                        class="fa fa-arrow-circle-right mx-3"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-11 col-md-11 col-lg-6 col-xl-5 countries-container bg-white">
+                        <div class="d-flex justify-content-between resp-countries-container">
+                            <div class="">
+                                <h4 class="text-dark">Message</h4>
+                            </div>
+                            <div class="d-flex justify-content-end selected-number border-round py-2 px-3" href="#">
+                                <div class="show m-auto">
+                                    <div class="mx-2"><b>+19592098295</b></div>
+                                </div>
+                                <div class="">
+                                    <img class="rounded-circle img img-responsive"
+                                         src="{% static "/images/home/united-states.png" %}" width="30px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="countries-data d-flex flex-column"
+                             style="overflow: scroll; overflow-x: hidden; padding-right: 2rem;">
+                            {% for i in "x"|rjust:"1" %}
+                                <div class="card-body my-2">
+                                    <div class="d-flex justify-content-start" href="#">
+                                        <div class="w-10 mx-3 show">
+                                            <img class="rounded-circle img img-responsive"
+                                                 src="{% static "/images/free_numbers/unknown-person.png" %}"
+                                                 width="37px">
+                                        </div>
+                                        <div class="w-70">
+                                            <div style="font-size: 14px"><b>98295</b></div>
+                                            <div style="font-size: 12px">2023-04-10 5:55:35 AM</div>
+                                        </div>
+                                    </div>
+                                    <div class="mx-3 py-2 message-text">Your verification code for Freelancer.com is
+                                        455216 ashar khalid this is my message
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script src="{% static "fapva_js/free_numbers.js" %}"></script>
+    <script>
+        var data;
+        window.onload = function () {
+            data = {
+                "countries_url": '{% url "countries" %}',
+                "services_url": '{% url "services" %}'
+            };
+
+            new FreeNumbers(data);
+        }
+    </script>
+    <script>
+
+
+    </script>
+
+
+{% endblock %}

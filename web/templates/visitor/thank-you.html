@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} FVPVA | Thank You {% endblock %}
+{% block description %} Payment Completed FVPVA {% endblock %}
+
+{% block css %}
+    <!-- Express fills in the clientId and clientToken variables -->
+    <style>
+        .card-body {
+            background: #E5F1F1;
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: black;
+            /* max-height: 80px; */
+            width: 100%;
+            transition: all ease-in-out 0.2s
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="mb-4 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="75" height="75"
+                 fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+        </div>
+        <div class="text-center">
+            <h1>Thank You !</h1>
+            <h1 class="px-5" style="font-weight: 600">Please Do not Leave this Screen You will receive your message here
+                in a while.</h1>
+        </div>
+        <div class="container my-5">
+            <div class="row">
+                <div class="d-flex justify-content-between">
+                    <h3>OTP Messages</h3>
+                    <button id="cancel" class="bg-black text-white py-1 px-2 border rounded">Cancel Order</button>
+                </div>
+                <div id="message">
+                    <div class="card-body my-2">No Message Received Yet</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        const socket = SOCKET('/ws/message-receiver/{{ user.id }}');
+
+        socket.onopen = async function (e) {
+            console.log('WebSocket connection established.');
+        };
+
+        socket.onmessage = async function (event) {
+            let data = JSON.parse(event.data);
+            console.log(data);
+            $("#message").html(`<div class="card-body my-2">
+                                    <div class="d-flex justify-content-start" href="#">
+                                        <div class="w-10 mx-3 show">
+                                            <img class="rounded-circle img img-responsive" src="/static/images/free_numbers/unknown-person.png" width="37px">
+                                        </div>
+                                        <div class="w-70">
+                                            <div style="font-size: 14px"><b>98295</b></div>
+                                            <div style="font-size: 12px">${get_or_convert_date_time_to_system_time_zone()}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mx-3 py-2 message-text">${data}
+                                    </div>
+                                </div>`)
+        };
+
+        socket.onclose = async function (e) {
+            console.log('WebSocket connection closed.' + e);
+        };
+        socket.onerror = async function (e) {
+            console.log(e);
+        };
+
+        let params = (new URL(document.location)).searchParams;
+        let order_id = params.get("order_id");
+
+        $("#cancel").on('click', function () {
+            $.ajax({
+                url: "{%  url 'cancel-order' %}"+ "/"+ order_id, // the endpoint
+                type: "GET", // http method
+                success: function (json) {
+                    genericSweetAlert("Success", json.description, "success").then(function(){
+                        window.location.href = "/"
+                    })
+                },
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                    }
+                },
+                // handle a non-successful response
+                error: error_function
+            });
+        })
+    </script>
+{% endblock %}

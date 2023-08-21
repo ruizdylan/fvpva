@@ -1,0 +1,52 @@
+
+body{
+    font-family: 'Poppins' !important;
+    font-style: normal !important;
+}
+.border-round{
+    border-radius: 1.5rem ;
+}
+
+#copywrite{
+    background: #00ABB3;
+    color: white;
+    flex-wrap: wrap;
+}
+#copywrite > a {
+    color: white;
+}
+
+#footer{
+    margin-top:5rem;
+}
+
+#copywrite div ul li{
+    margin-left: 4px;
+}
+#copywrite div ul li:not(:first-child):before {
+    content: " | ";
+}
+@media screen and (max-width: 426px) {
+    #footer-payment-list{
+        flex-wrap: wrap;
+    }
+    #footer-payment-list li{
+        margin: 0.5rem;
+    }
+    #copywrite div ul li:not(:first-child):before {
+        content: "";
+    }
+    #copywrite div ul li{
+        margin: 0.5rem;
+    }
+
+    #copywrite div ul {
+        flex-direction: column;
+        text-align: center;
+    }
+    #copywrite{
+        justify-content: center !important;
+        margin: 0.5rem;
+    }
+
+}

@@ -1,0 +1,549 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} FVPVA {% endblock %}
+{% block description %} Custom Description FVPVA {% endblock %}
+
+{% block css %}
+    <link href="{% static '/fapva_css/home.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+    {# Virtual Online Number for Service#}
+    <div class="container-fluid">
+        <div class="row header-container">
+            <div class="col-12 my-4">
+                <h1 class="text-center text-capitalize m-auto">
+                    Virtual online numbers for receiving SMS messages
+                </h1>
+            </div>
+            <div class="col-12 my-4 text-center header-button">
+                <button class="btn btn-primary bg-dark text-white mx-2 border border-dark px-5 py-3 btn-border-round">
+                    Try for free
+                </button>
+                <button class="btn btn-primary bg-transparent mx-2 border border-white px-5 py-3 btn-border-round">
+                    How it work <span class="fa-regular fa-play-circle"></span>
+                </button>
+                <div class="text-center header-image">
+                    <img width="95%" src="{% static "images/header-united-states.png" %}" class="d-none d-sm-block">
+                    <img width="95%" src="{% static "images/header-small-screen.png" %}" class="d-sm-none my-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    Full List of Countries and Services#}
+    <div class="container-fluid">
+        <div class="row countries-services-container">
+            <div class="col-12 my-3 my-3">
+                <h3 class="text-center text-capitalize m-auto">
+                    Full list of Countries and Services
+                </h3>
+                <p class="text-center m-auto my-3">
+                    Our virtual phone number service allows you to receive an unlimited number of SMS messages from any
+                    chosen site or app, anytime and anywhere. The process is fully automated and you'll receive
+                    verification codes instantly.
+                </p>
+            </div>
+            <div class="col-12">
+                <div class="row d-flex justify-content-center">
+                    {#            Select a Service#}
+                    <div class="col-sm-11 col-md-11 col-lg-6 col-xl-5 services-container">
+                        <div class="d-flex justify-content-between resp-services-container">
+                            <div class="my-auto">
+                                <h4>Select a Service</h4>
+                            </div>
+                            <div class="search-input-container">
+                                <input class="search-input-field" placeholder="Search" id="service-search">
+                                <span class="fa-solid fa-search text-white"></span>
+                            </div>
+                        </div>
+                        <div class="services-data d-flex flex-column" id="services-data">
+                            {#                            {% for i in "x"|rjust:"30" %}#}
+                            {#                                <a class="card-body d-flex justify-content-start my-2" href="#">#}
+                            {#                                    <div class="flex-fill m-auto hide text-center justify-content-center text-white text-uppercase my-2">#}
+                            {#                                        Buy Now#}
+                            {#                                    </div>#}
+                            {#                                    <div class="w-10 mx-3 show">#}
+                            {#                                        <img src="{% static "/images/home/airbnb.png" %}" width="37px">#}
+                            {#                                    </div>#}
+                            {#                                    <div class="w-70 flex-grow-1 show">#}
+                            {#                                        <div><b>Airbnb</b></div>#}
+                            {#                                        <div class="title-text">123456</div>#}
+                            {#                                    </div>#}
+                            {#                                    <div class="w-10 m-auto show">#}
+                            {#                                        <span class="bg-dark text-white border px-3 py-1 border-round">0.23 USD</span>#}
+                            {#                                    </div>#}
+                            {#                                </a>#}
+                            {#                            {% endfor %}#}
+                        </div>
+                        <div class="services-arrows">
+                            <ul class="d-flex list-unstyled justify-content-center m-0">
+                                <li><a href="javascript:void(0)" id="service-left"><span
+                                        class="fa fa-arrow-circle-left mx-3"></span></a></li>
+                                <li><a href="javascript:void(0)" id="service-right"><span
+                                        class="fa fa-arrow-circle-right mx-3"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-11 col-md-11 col-lg-6 col-xl-5 countries-container">
+                        <div class="d-flex justify-content-between resp-countries-container">
+                            <div class="my-auto">
+                                <h4>Select a Country</h4>
+                            </div>
+                            <div class="search-input-container">
+                                <input class="search-input-field" placeholder="Search" id="country-search">
+                                <span class="fa-solid fa-search text-white"></span>
+                            </div>
+                        </div>
+                        <div class="countries-data d-flex flex-column" id="countries-data">
+                            {#                            {% for i in "x"|rjust:"30" %}#}
+                            {#                                <div class="card-body d-flex justify-content-start my-2" href="#">#}
+                            {#                                    <div class="w-10 mx-3 show">#}
+                            {#                                        <img class="rounded-circle img img-responsive"#}
+                            {#                                             src="{% static "/images/home/united-states.png" %}" width="37px">#}
+                            {#                                    </div>#}
+                            {#                                    <div class="w-70 flex-grow-1 show m-auto">#}
+                            {#                                        <div><b>United Stated</b></div>#}
+                            {#                                    </div>#}
+                            {#                                    <div class="w-10 m-auto show container-input">#}
+                            {#                                        <input type="radio" id="country" name="county" class="country-id"/>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            {% endfor %}#}
+                        </div>
+                        <div class="services-arrows colored">
+                            <ul class="d-flex list-unstyled justify-content-center m-0">
+                                <li><a href="javascript:void(0)" id="country-left"><span
+                                        class="fa fa-arrow-circle-left mx-3"></span></a></li>
+                                <li><a href="javascript:void(0)" id="country-right"><span
+                                        class="fa fa-arrow-circle-right mx-3"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    How to obtain a virtual Number#}
+    <div class="container">
+        <div class="row obtain-virtual-number-container">
+            <div class="col-12 my-3 ">
+                <h3 class="text-center text-capitalize m-auto">
+                    How Can I Obtain a Virtual Number for an SMS Verification Code?
+                </h3>
+                <p class="text-center m-auto my-3">
+                    To easily set up a virtual phone number for an SMS verification code, you can follow these simple
+                    steps
+                </p>
+            </div>
+            <div class="col-12 my-3">
+                <div class="row justify-content-between">
+                    <div class="col-12 col-xl-2 col-lg-2 col-md-6 col-sm-12 obtain-virtual-number-data my-2">
+                        <div class="d-flex">
+                            <div class="align-self-end number-text">01</div>
+                            <div class="my-auto">
+                                <div>
+                                    <img src="{% static '/images/home/sign-up-account.png' %}"
+                                         class="figure-img img-fluid rounded" alt="">
+                                </div>
+                                <div class="text-size align-self-start">
+                                    Sign up for an Account
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-2 col-lg-2 col-md-6 col-sm-12 obtain-virtual-number-data my-2">
+                        <div class="d-flex">
+                            <div class="align-self-end number-text">02</div>
+                            <div class="my-auto">
+                                <div>
+                                    <img src="{% static '/images/home/select-country.png' %}"
+                                         class="figure-img img-fluid rounded" alt="">
+                                </div>
+                                <div class="text-size align-self-end">
+                                    Select the
+                                    country
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-12 obtain-virtual-number-data my-2">
+                        <div class="d-flex">
+                            <div class="align-self-end number-text">03</div>
+                            <div class="my-auto">
+                                <div>
+                                    <img src="{% static '/images/home/buy-button.png' %}"
+                                         class="figure-img img-fluid rounded" alt="">
+                                </div>
+                                <div class="text-size">
+                                    Select the desired service
+                                    and click on BUY button
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-12 obtain-virtual-number-data my-2">
+                        <div class="d-flex">
+                            <div class="align-self-end number-text">04</div>
+                            <div class="my-auto">
+                                <div>
+                                    <img src="{% static '/images/home/sms-verification.png' %}"
+                                         class="figure-img img-fluid rounded" alt="">
+                                </div>
+                                <div class="text-size">
+                                    Wait for the OTP
+                                    confirmation SMS
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#                    <div class="col-3 obtain-virtual-number-data">#}
+                    {#                        <figure class="figure text-center">#}
+                    {#                            <img src="{% static '/images/home/sign-up-account.png' %}"#}
+                    {#                                 class="figure-img img-fluid rounded" alt="">#}
+                    {#                            <figcaption class="figure-caption">#}
+                    {#                                <span>01</span> Sign up for an Account#}
+                    {#                            </figcaption>#}
+                    {#                        </figure>#}
+                    {#                    </div>#}
+                    {#                    <div class="col-3 obtain-virtual-number-data">#}
+                    {#                        <figure class="figure text-center">#}
+                    {#                            <img src="{% static '/images/home/select-country.png' %}"#}
+                    {#                                 class="figure-img img-fluid rounded" alt="">#}
+                    {#                            <figcaption class="figure-caption">#}
+                    {#                                <span>02</span> Select the country#}
+                    {#                            </figcaption>#}
+                    {#                        </figure>#}
+                    {#                    </div>#}
+                    {#                    <div class="col-3 obtain-virtual-number-data">#}
+                    {#                        <figure class="figure text-center">#}
+                    {#                            <img src="{% static '/images/home/buy-button.png' %}" class="figure-img img-fluid rounded"#}
+                    {#                                 alt="">#}
+                    {#                            <figcaption class="figure-caption">#}
+                    {#                                <span>03</span> Select the desired service and click on BUY button#}
+                    {#                            </figcaption>#}
+                    {#                        </figure>#}
+                    {#                    </div>#}
+                    {#                    <div class="col-3 obtain-virtual-number-data">#}
+                    {#                        <figure class="figure text-center">#}
+                    {#                            <img src="{% static '/images/home/sms-verification.png' %}"#}
+                    {#                                 class="figure-img img-fluid rounded" alt="">#}
+                    {#                            <figcaption class="figure-caption">#}
+                    {#                                <span>04</span> Wait for the OTP confirmation SMS#}
+                    {#                            </figcaption>#}
+                    {#                        </figure>#}
+                    {#                    </div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    Choose A Convenient Option For Using A Virtual Number#}
+    <div class="container">
+        <div class="row choose-option-container">
+            <div class="col-12 my-3 ">
+                <h3 class="text-center text-capitalize m-auto">
+                    Choose A Convenient Option For Using A Virtual Number
+                    To Get A Password Verification Account (PVA)
+                </h3>
+            </div>
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 choose-option-data text-center justify-content-center m-2">
+                        <img src="{% static '/images/home/color-logo-activiation-rent.png' %}"/>
+                        <h3>Activations</h3>
+                        <p class="m-auto">the time of use of a disposable number is limited to 20 minutes.</p>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 choose-option-data m-2 justify-content-center text-center">
+                        <img src="{% static '/images/home/color-logo-activiation-rent.png' %}"/>
+                        <h3>Rent</h3>
+                        <p class="m-auto">You can receive an unlimited number of messages for a period of 4 hours to 4
+                            weeks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    Discover the Key Advantages and Benefits of 2FAPVA#}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-3 advantage-and-benefit-container">
+                <h3 class="text-center text-capitalize m-auto">
+                    Discover the Key Advantages and
+                    Benefits of 2FAPVA
+                </h3>
+            </div>
+            <div class="col-12 my-3">
+                <swiper-container pagination="true" class="swiper-container">
+                    <swiper-slide>
+                        <div class="advantage-and-benefit-data text-center">
+                            <div class="w-100 px-4 ">
+                                <img src="{% static '/images/home/detail-statistics.png' %}"/>
+                                <h3>Detailed Statistics</h3>
+                                <p class="m-auto">of all your assets for all countries and services</p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="advantage-and-benefit-data text-center">
+                            <div class="w-100 px-4">
+                                <img src="{% static '/images/home/online-number.png' %}"/>
+                                <h3>More than 100,00 online number</h3>
+                                <p class="m-auto">everyday from all over the world.</p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="advantage-and-benefit-data text-center">
+                            <div class="w-100 px-4">
+                                <img src="{% static '/images/home/loyality-program.png' %}"/>
+                                <h3>Loyalty program</h3>
+                                <p class="m-auto">for those who makes regular purchases.</p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="advantage-and-benefit-data text-center">
+                            <div class="w-100 px-4">
+                                <img src="{% static '/images/home/quick-automation.png' %}"/>
+                                <h3>Quick and automatic</h3>
+                                <p class="m-auto">Password for virtual numbers.</p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="advantage-and-benefit-data text-center">
+                            <div class="w-100 px-4">
+                                <img src="{% static '/images/home/pay-for-sms.png' %}"/>
+                                <h3>You only pay for SMS</h3>
+                                <p class="m-auto">We will refund the minimum commission to you from all the most popular
+                                    payment
+                                    systems automatically.</p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="advantage-and-benefit-data text-center">
+                            <div class="w-100 px-4">
+                                <img src="{% static '/images/home/commision.png' %}"/>
+                                <h3>Minimum commissions</h3>
+                                <p class="m-auto">from all the most popular payment systems in automatic mode.</p>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                </swiper-container>
+                <div class="d-flex flex-wrap justify-content-between advantage-and-benefit-data text-center" id="advantage-container">
+                    <div>
+                        <img src="{% static '/images/home/detail-statistics.png' %}"/>
+                        <h3>Detailed Statistics</h3>
+                        <p class="m-auto">of all your assets for all countries and services</p>
+                    </div>
+                    <div>
+                        <img src="{% static '/images/home/online-number.png' %}"/>
+                        <h3>More than 100,00 online number</h3>
+                        <p class="m-auto">everyday from all over the world.</p>
+                    </div>
+                    <div>
+                        <img src="{% static '/images/home/loyality-program.png' %}"/>
+                        <h3>Loyalty program</h3>
+                        <p class="m-auto">for those who makes regular purchases.</p>
+                    </div>
+                    <div>
+                        <img src="{% static '/images/home/quick-automation.png' %}"/>
+                        <h3>Quick and automatic</h3>
+                        <p class="m-auto">Password for virtual numbers.</p>
+                    </div>
+                    <div>
+                        <img src="{% static '/images/home/pay-for-sms.png' %}"/>
+                        <h3>You only pay for SMS</h3>
+                        <p class="m-auto">We will refund the minimum commission to you from all the most popular payment
+                            systems automatically.</p>
+                    </div>
+                    <div>
+                        <img src="{% static '/images/home/commision.png' %}"/>
+                        <h3>Minimum commissions</h3>
+                        <p class="m-auto">from all the most popular payment systems in automatic mode.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#    Frequently Asked Questions#}
+    <div class="container" id="faq-container">
+        <div class="row">
+            <div class="col-12 my-3 faq-container">
+                <h3 class="text-center text-capitalize">
+                    Frequently Asked Questions
+                </h3>
+                <p class="text-center text-capitalize font-weight-bold my-3 sub-heading" style="">How can we help
+                    you?</p>
+            </div>
+            <div class="col-12 my-3 faq-data">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                How can I receive my text messages online with my number?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                In order to select a temporary phone number for SMS verification, follow these steps:
+                                <ol>
+                                    <li>
+                                        First, select the country from the list provided on the left side of the screen.
+                                    </li>
+                                    <li>
+                                        Next, choose a service that is compatible with the website you wish to register
+                                        on.
+                                    </li>
+                                    <li>
+                                        Then, click the 'buy' button and copy the number that appears in the order.
+                                    </li>
+                                    <li>
+                                        Finally, use this number to register your account and wait for the SMS
+                                        verification to arrive. The code will be displayed on the screen for you to use.
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How can I receive text messages online for free?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                SMS is still not arrived, what to do?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How to contact 2FAPVA support?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Why Virtual Phone Numbers are Essential for SMS Receiving and Verification?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                What are the benefits of using virtual phone numbers?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How can I create a Bigo Live account without a phone number?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How can I use a virtual number to answer calls?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                What are virtual numbers and how can they be used to receive SMS?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <script src="{% static "fapva_js/home.js" %}"></script>
+    <script>
+        var data;
+        window.onload = function () {
+            data = {
+                "countries_url": '{% url "countries" %}',
+                "services_url": '{% url "services" %}'
+            };
+
+            new Home(data);
+        }
+    </script>
+{% endblock %}

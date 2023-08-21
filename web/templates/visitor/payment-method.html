@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} FVPVA | Payment Method {% endblock %}
+{% block description %} Custom Payment Method FVPVA {% endblock %}
+
+{% block css %}
+    <link href="{% static '/fapva_css/payment-method.css' %}" rel="stylesheet" type="text/css"/>
+    {% if number_id %}
+    <link rel="stylesheet" type="text/css"
+          href="https://www.paypalobjects.com/webstatic/en_US/developer/docs/css/cardfields.css"/>
+    {% endif %}
+    <!-- Express fills in the clientId and clientToken variables -->
+{% endblock %}
+
+{% block content %}
+    {% if number_id %}
+    <script
+            src="https://www.paypal.com/sdk/js?components=buttons,hosted-fields&client-id={{ client_id }}&disable-funding=credit"
+            data-client-token="{{ client_token }}"
+    ></script>
+    {% endif %}
+    <div class="container-fluid">
+        <div class="row header-container">
+            <div class="col-12 my-4">
+                <h1 class="text-center text-capitalize m-auto">
+                    Deposit
+                </h1>
+                <p>
+                    Choose a payment method
+                </p>
+            </div>
+            {% if number_id %}
+            <div class="row mx-auto">
+                <div class="col-12 bg-white">
+                    <div class="d-flex justify-content-center">
+                        <ul class="nav nav-pills mb-3 deposite-buttons" id="pills-tab"
+                            role="tablist">
+                            <li class="nav-item mx-2" role="presentation">
+                                <button class="nav-link bg-black text-white text-uppercase btn-border-round active"
+                                        id="cryptocurrency-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">Cryptocurrency
+                                </button>
+                            </li>
+                            <li class="nav-item mx-2" role="presentation">
+                                <button class="nav-link text-uppercase btn-border-round bg-white text-black"
+                                        id="fiat-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-profile" type="button" role="tab"
+                                        aria-controls="pills-profile"
+                                        aria-selected="false">FIAT
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                             aria-labelledby="cryptocurrency-tab">
+                            {% include "payment_components/cryptocurrency.html" %}
+                        </div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                             aria-labelledby="fiat-tab">
+                            <!-- Set up a container element for the button -->
+                            {#                            <div id="paypal-button-container"></div>#}
+                            <div class="card_container pay-through-wallet">
+                                <button type="button" id="pay-through">Pay Through Wallet</button>
+                            </div>
+                            <div class="card_container paypal-or-button">
+                                <hr>
+                                <p>Or</p>
+                            </div>
+                            <div id="paypal-button-container" class="paypal-button-container"></div>
+                            <div class="card_container paypal-or-button">
+                                <hr>
+                                <p>Or</p>
+                            </div>
+                            {% include "payment_components/paypal-card.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="row mx-auto">
+                <div class="col-12 bg-white">
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url "visitor-home" %}?#countries-data" class="text-decoration-none text-black p-3" >Click Here to Select a Service</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-12 text-center header-container bg-white">
+                <h1>Balance History</h1>
+                <p class="total-entries" id="total-entries">0 enteries total</p>
+            </div>
+
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-responsive" id="transaction-table">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                                </thead>
+                                <tbody id="data-body">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{% static "fapva_js/payment-method.js" %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("ul.crypto-list li").on('click', function () {
+                console.log($(this).parent().find(".active").removeClass());
+                $(this).addClass("active")
+                $(this).find("input[type=radio]").prop("checked", true);
+            });
+        });
+        var data;
+        window.onload = function () {
+            data = {
+                "order_url": '{% url "client-order" %}',
+                "access_token": '{{ access_token | safe }}',
+                "number_id": '{{ number_id | safe }}',
+                "crypto_coin_image": "{% static "images/home/crypto-coin.png" %}",
+                "bitcoin_image": "{% static "images/home/bitcoin.png" %}",
+                "etherium_image": "{% static "images/home/etherium.png" %}",
+                "crypto_coin_image_2": "{% static "images/home/crypto-coin-2.png" %}"
+
+            };
+
+            new PaypalPayment(data);
+        }
+
+        {% if number_id %}
+        $("#pay-through").on('click', function () {
+            loadingSweetAlert('Please Wait')
+            $.ajax({
+                url: "{%  url 'wallet-order' %}"+ "/"+ {{ number_id | safe }}, // the endpoint
+                type: "GET", // http method
+                success: function (json) {
+                    genericSweetAlert("Success", json.description, "success").then(function(){
+                        window.location.href = "/thank-you/"+ json.payload.order_id+ "?expire_at="+ json.payload.expire_at;
+                    })
+                },
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                    }
+                },
+                // handle a non-successful response
+                error: error_function
+            });
+        })
+        {% endif %}
+    </script>
+{% endblock %}

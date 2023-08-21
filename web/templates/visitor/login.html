@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block title %} FVPVA | Login {% endblock %}
+{% block description %} FVPVA Login Section {% endblock %}
+
+{% block css %}
+    <link href="{% static '/fapva_css/login_and_signup.css' %}" rel="stylesheet" type="text/css"/>
+    <style>
+        nav {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include "common/login_signup_header.html" %}
+
+
+    <div class="container">
+        <div class="row login-container">
+            <div class="col-lg-6 col-md-12 col-sm-12 my-auto order-lg-1 order-md-2 my-4">
+                <h3>Welcome Back</h3>
+                <p>Welcome Back! Please enter your details.</p>
+                <form id="loginForm">
+                    <div class="form-group my-3">
+                        <label for="exampleInputEmail1">Enter your Email</label>
+                        <input type="email" name="email" id="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <ul class="list-unstyled d-flex justify-content-between my-3">
+                        <li>
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Remember Information</label>
+                        </li>
+                        <li>
+                            <a href="#" class="font-weight-bold text-dark">Forgot Password</a>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled d-flex justify-content-between">
+                        <li>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </li>
+                        <li class="m-auto">
+                            <p>You Don't have an account? <a href="{% url "visitor-signup" %}?next={{ next|safe }}" class="text-uppercase sign-up-anchor">Sign Up</a></p>
+                        </li>
+                    </ul>
+                </form>
+                <div class="my-5 or-container">
+                    <div>
+                        <h3>Or</h3>
+                        <hr>
+                    </div>
+                </div>
+                <ul class="list-unstyled d-flex sign-in-with-container justify-content-evenly">
+                    <li>
+                        <a href="{% provider_login_url 'google' method="oauth2" %}"><img src="{% static "images/login/google.png" %}"> Sign in with Google</a>
+                    </li>
+                    <li>
+                        <a href="{% provider_login_url 'facebook' method="oauth2" %}"><img src="{% static "images/login/facebook-logo.png" %}"> Sign in With Facebook</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 order-lg-2 order-md-1 my-4">
+                <img src="{% static "images/login/login_side.png" %}" width="100%"/>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+
+        <script src="{% static "fapva_js/sign-up.js" %}"></script>
+
+    <script>
+        var data;
+        window.onload = function () {
+            data = {
+                "login_url" : ' {% url "client_login" %}',
+                "home_url" : ' {% url "visitor-home" %}',
+                "next": '{{ next | safe }}'
+            };
+
+            new SignUp(data);
+        }
+    </script>
+
+{% endblock %}

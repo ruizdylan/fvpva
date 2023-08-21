@@ -1,0 +1,32 @@
+.navbar-nav.bg-gradient-primary.sidebar.sidebar-dark.accordion{
+    background: #00ABB3;
+}
+
+.text-primary{
+    color: #00ABB3 !important;
+}
+
+.btn-primary{
+    background: #00ABB3;
+    border-color: #00ABB3;
+}
+
+.btn-primary:hover , .btn-primary:active {
+    background: rgba(0, 171, 179, 0.84);
+        border-color: #00ABB3;
+}
+
+.btn-primary:focus, .btn-primary:target{
+    background-color: #00ABB3 !important;
+    border-color: #00ABB3 !important;;
+    box-shadow:0 0 0 0.2rem  rgba(0, 171, 179, 0.84) !important;
+}
+
+.dataTables_paginate.paging_simple_numbers .pagination li a {
+    color: #00ABB3;
+    border-color: #00ABB3;
+}
+.dataTables_paginate.paging_simple_numbers .pagination li.active a{
+    color: white;
+    background: #00ABB3;
+}

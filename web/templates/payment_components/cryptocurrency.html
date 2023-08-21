@@ -1,0 +1,30 @@
+{% load  static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <ul class="d-flex justify-content-between list-unstyled">
+                <li>
+                    <h4>
+                        Select a Payment Service
+                    </h4>
+                </li>
+                <li>
+                    <div class="services-arrows">
+                        <ul class="d-flex list-unstyled justify-content-center m-0">
+                            <li><a href="javascript:void(0)" id="crypto-left"><span
+                                    class="fa fa-caret-left mx-3"></span></a></li>
+                            <li><a href="javascript:void(0)" id="crypto-right"><span
+                                    class="fa fa-caret-right mx-3"></span></a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-12">
+            <ul class="d-flex justify-content-around list-unstyled crypto-list" id="crypto-list">
+            </ul>
+        </div>
+    </div>
+</div>

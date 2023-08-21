@@ -1,0 +1,77 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid justify-content-between">
+        <div class=" d-md-block d-lg-none" style="width: 35%">
+            <a class="navbar-brand m-0"><img src='{% static "/images/logo.png" %}' width="100%"></a>
+        </div>
+        <div class=" d-md-block d-lg-none text-right" style="width: 65%; text-align:right">
+            <button class="navbar-toggler text-uppercase bg-dark text-white border border-dark px-3 py-2 border-round"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                Menu <span class="fa-solid fa-bars text-white"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0 flex-fill">
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-uppercase" href="{% url 'visitor-home' %}">Home</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-uppercase" href="{% url 'visitor-free-numbers' %}">Free Numbers</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-uppercase" href="{% url 'visitor-home' %}#faq-container">FAQ</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-uppercase" href="#">API</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-uppercase" href="#">Blog</a>
+                </li>
+            </ul>
+            <div class="flex-fill d-none d-sm-none d-md-none d-lg-block">
+                <a class="navbar-brand" href="{% url 'visitor-home' %}"><img src='{% static "/images/logo.png" %}'></a>
+            </div>
+            <hr class="hr hr-blurry d-none d-sm-block"/>
+            <ul class="navbar-nav mb-2 mb-lg-0 flex-fill justify-content-end d-flex">
+                <li class="nav-item dropdown border border-dark px-2 py-1 border-round">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Eng
+                    </a>
+                    <ul class="dropdown-menu" style="text-align:left">
+                        <li><a class="dropdown-item" href="#">Eng</a></li>
+                    </ul>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="dropdown border border-dark mx-1 px-2 py-1 border-round">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            {{ user.first_name }} {{ user.last_name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="text-align:left">
+                            {% if user.role.code == "super-admin" %}
+                                <a class="dropdown-item text-left" href="{% url "admin-dashboard" %}">Dashboard</a>
+                            {% elif user.role.code == 'customer' %}
+                                <a class="dropdown-item text-left" href="{% url "visitor-payment-method" %}">Dashboard</a>
+                                {% endif %}
+                            <a class="dropdown-item" href="javascript:void(0)" id="logout">Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item px-2 py-1 my-auto">
+                        Credits: {{ balance }}
+                    </li>
+                {% else %}
+                    <li class="nav-item px-2 py-1">
+                        <a class="nav-link text-uppercase" aria-current="page"
+                           href="{% url "visitor-login" %}">Login</a>
+                    </li>
+                    <li class="nav-item border border-dark px-2 py-1 border-round bg-dark">
+                        <a class="nav-link text-uppercase text-white" aria-current="page"
+                           href="{% url "visitor-signup" %}">Sign Up</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

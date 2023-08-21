@@ -1,0 +1,306 @@
+.header-container {
+    background: #00ABB3;
+    padding: 80px 0px;
+}
+
+.header-container h1 {
+    font-size: 4rem;
+    line-height: 74px;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-border-round {
+    border-radius: 4rem;
+}
+
+.countries-services-container {
+    background: #E5F1F1;
+    padding: 80px 0px;
+}
+
+.countries-services-container h3 {
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.countries-services-container p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    /* or 188% */
+    text-align: center;
+    color: #62727B;
+    width: 80%;
+}
+
+
+.countries-container h4 {
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+}
+
+.countries-container {
+    padding: 40px;
+}
+
+.web-color {
+    background: #00ABB3;
+}
+
+.search-input-field {
+    background: #14B8BF;
+    border: none;
+    border-radius: 30px;
+    padding: 0rem 0rem 0rem 2rem;
+    color: white;
+    height: 40px;
+}
+
+.search-input-field::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+.search-input-field:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+}
+
+.search-input-field::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+}
+
+.search-input-field:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.search-input-container {
+    position: relative;
+}
+
+.search-input-container span {
+    position: absolute;
+    top: 14px;
+    left: 10px;
+}
+
+
+.countries-data::-webkit-scrollbar-track {
+    background: #E5F1F1;
+}
+
+.countries-data::-webkit-scrollbar-thumb {
+    background: #14B8BF;
+    border-radius: 3px;
+}
+
+
+.countries-data {
+    margin: 0.5rem 0rem;
+    padding-right: 2rem;
+    height: 330px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.countries-data .card-body {
+    background: #14B8BF;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: black;
+    /*max-height: 80px;*/
+    width: 100%;
+    transition: all ease-in-out 0.2s;
+}
+.countries-data.real-countries .card-body {
+    max-height: 80px;
+}
+
+.countries-data .card-body {
+    background: #E5F1F1;
+    cursor: pointer;
+}
+
+
+.countries-container h4 {
+    font-size: 30px;
+    font-weight: 600;
+    color: black;
+}
+
+.container-input input[type="radio"] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    outline: none;
+    border: 3px solid #14B8BF;
+}
+
+.container-input input[type='radio']:before {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 60%;
+    margin: 20% auto;
+    border-radius: 50%;
+}
+
+input[type="radio"]:checked:before {
+    background: #14B8BF;
+
+}
+
+input[type="radio"]:checked {
+    border-color: #14B8BF;
+}
+
+.services-data::-webkit-scrollbar, .countries-data::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+}
+
+.services-data::-webkit-scrollbar-track {
+    background: #14B8BF;
+}
+
+.countries-data::-webkit-scrollbar-track {
+    background: #E5F1F1;
+}
+
+.countries-data::-webkit-scrollbar-thumb {
+    background: #14B8BF;
+    border-radius: 3px;
+}
+
+.selected-number {
+    background: #E5F1F1;
+}
+
+.services-arrows {
+    display: none;
+}
+
+/*For Laptop Resolution 1024 and 767 px*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .header-container h1 {
+        font-size: 40px;
+        line-height: normal;
+    }
+
+    .services-container h4, .countries-container h4 {
+        font-size: 22px;
+        margin: auto;
+    }
+}
+
+
+/*For Tablet 768 and */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .header-container {
+        padding: 20px 0px 0px 0px;
+    }
+
+    .header-container h1 {
+        font-size: 40px;
+        line-height: normal;
+    }
+
+    .services-container h4, .countries-container h4 {
+        font-size: 22px;
+        margin: auto;
+    }
+
+    .services-data, .countries-data {
+        overflow: hidden;
+        padding-right: 0rem;
+    }
+
+    .services-arrows {
+        display: block;
+    }
+
+    .services-arrows ul a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 4rem;
+    }
+
+    .colored ul a {
+        color: #00ABB3;
+    }
+
+    .message-text {
+        font-size: 14px;
+    }
+
+    .countries-data .card-body {
+        padding: 10px 15px;
+    }
+}
+
+
+@media screen and (max-width: 426px) {
+    .header-container {
+        padding: 20px 0px 0px 0px;
+    }
+
+    .header-container h1 {
+        font-size: 30px;
+        line-height: normal;
+        text-underline: none;
+        width: 100%;
+    }
+
+    .header-container h1 span {
+        text-underline: none;
+        width: 100%;
+    }
+
+    .header-button button {
+        font-size: 10px;
+    }
+
+    .countries-services-container p, .obtain-virtual-number-container p, .choose-option-container p, .advantage-and-benefit-container p, .advantage-and-benefit-data p {
+        width: 100%;
+    }
+
+    .resp-services-container, .resp-countries-container {
+        flex-direction: column;
+    }
+
+    .resp-services-container input, .resp-countries-container input {
+        width: 100%;
+    }
+
+    .services-data, .countries-data {
+        overflow: hidden;
+        padding-right: 0rem;
+    }
+
+    .services-arrows {
+        display: block;
+    }
+
+    .services-arrows ul a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 4rem;
+    }
+
+    .colored ul a {
+        color: #00ABB3;
+    }
+
+    .message-text {
+        font-size: 14px;
+    }
+
+    .countries-data .card-body {
+        padding: 10px 15px;
+    }
+}
